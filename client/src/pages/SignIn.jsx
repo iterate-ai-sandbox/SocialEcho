@@ -7,6 +7,7 @@ import { RxCross1 } from "react-icons/rx";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import ButtonLoadingSpinner from "../components/loader/ButtonLoadingSpinner";
 import Logo from "../assets/SocialEcho.png";
+import mixpanel from "mixpanel-browser";
 
 const SignIn = () => {
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,7 @@ const SignIn = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    mixpanel.track("Sign In initiated");
     setLoading(true);
     setLoadingText("Signing in...");
     const formData = new FormData();

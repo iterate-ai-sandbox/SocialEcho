@@ -9,6 +9,7 @@ import { Transition } from "@headlessui/react";
 import { AiOutlineBars } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 import Logo from "../../assets/SocialEcho.png";
+import mixpanel from "mixpanel-browser";
 
 const Navbar = ({ userData, toggleLeftbar, showLeftbar }) => {
   const dispatch = useDispatch();
@@ -18,10 +19,12 @@ const Navbar = ({ userData, toggleLeftbar, showLeftbar }) => {
   const dropdownRef = useRef(null);
 
   const handleProfileClick = () => {
+    mixpanel.track("Profile Clicked");
     setShowDropdown(!showDropdown);
   };
 
   const logout = async () => {
+    mixpanel.track("Logout initiated");
     setLoggingOut(true);
     await dispatch(logoutAction());
     setLoggingOut(false);

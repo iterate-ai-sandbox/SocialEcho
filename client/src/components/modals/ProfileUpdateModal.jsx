@@ -7,6 +7,7 @@ import {
 import { useDispatch } from "react-redux";
 import ButtonLoadingSpinner from "../loader/ButtonLoadingSpinner";
 import { FiUser, FiMapPin, FiEdit } from "react-icons/fi";
+import mixpanel from "mixpanel-browser";
 
 const suggestedInterests = [
   "🎨 Art",
@@ -42,6 +43,7 @@ const ProfileUpdateModal = ({ user, isOpen, onClose }) => {
   );
 
   const handleUpdateProfile = async () => {
+    mixpanel.track("Profile Update initiated");
     setIsUpdating(true);
 
     const formData = {

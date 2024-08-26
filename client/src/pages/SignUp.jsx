@@ -7,6 +7,7 @@ import ContextAuthModal from "../components/modals/ContextAuthModal";
 import { RxCross1 } from "react-icons/rx";
 import ButtonLoadingSpinner from "../components/loader/ButtonLoadingSpinner";
 import Logo from "../assets/SocialEcho.png";
+import mixpanel from "mixpanel-browser";
 
 const SignUpNew = () => {
   const [loading, setLoading] = useState(false);
@@ -69,6 +70,7 @@ const SignUpNew = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    mixpanel.track("Sign Up initiated");
     setLoading(true);
     setLoadingText("Signing up...");
     const formData = new FormData();

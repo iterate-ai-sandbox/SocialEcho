@@ -15,6 +15,7 @@ import { publicRoutes, privateRoutes } from "./routes";
 
 import PrivateRoute from "./PrivateRoute";
 import SignIn from "./pages/SignIn";
+import mixpanel from "mixpanel-browser";
 
 const AdminPanel = lazy(() => import("./pages/AdminPanel"));
 const AdminSignIn = lazy(() => import("./pages/AdminSignIn"));
@@ -24,6 +25,8 @@ const App = () => {
   const adminAccessToken = JSON.parse(
     localStorage.getItem("admin")
   )?.accessToken;
+
+  mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN);
 
   return (
     <Suspense fallback={<FallbackLoading />}>
