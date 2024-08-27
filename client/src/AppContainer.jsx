@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import createAppStore from "./redux/store";
-import axios from "axios";
 import CommonLoading from "./components/loader/CommonLoading";
 import App from "./App";
 import { getTitleFromRoute } from "./utils/docTitle";
@@ -18,19 +17,19 @@ const AppContainer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const checkServerStatus = async () => {
-      try {
-        await axios.get("/server-status");
-      } catch (err) {
-        setError("Server is down. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const checkServerStatus = async () => {
+  //     try {
+  //       await axios.get("/server-status");
+  //     } catch (err) {
+  //       setError("Server is down. Please try again later.");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    checkServerStatus();
-  }, []);
+  //   checkServerStatus();
+  // }, []);
 
   // Asynchronously initialize the Redux store, including data fetching and authentication,
   // while displaying a loading indicator. Making sure that the store is initialized with credentials and data before rendering the app.
